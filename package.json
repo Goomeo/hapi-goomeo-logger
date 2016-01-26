@@ -1,6 +1,6 @@
 {
   "name": "hapi-goomeo-logger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Goomeo Logger based on Good and Winston",
   "main": "index.js",
   "scripts": {

@@ -41,19 +41,19 @@ const myPlugin = {
      *
      * @param {object}      server                              Hapi Server
      * @param {object}      options                             Plugin Options
-     * @param {string}      options.logPath                     Path to log directory
+     * @param {string}      options.logPath                     Path to log directory (Default : /tmp/good-winston)
      * @param {object}      options.log                         Log logger config
      * @param {boolean}     options.log.enable                  True : enable log. False otherwise. (Default : true)
      * @param {boolean}     options.log.console                 True : enable console stdout. False otherwise. (Default : true)
      * @param {boolean}     options.log.rotate                  True : enable log rotate file. False otherwise. (Default : true)
      * @param {string}      options.log.name                    Log Name. It's used for file name
      * @param {string}      options.log.level                   Level capture (Default : '*')
-     * @param {object}      options.opts                        Opts logger config
-     * @param {boolean}     options.opts.enable                 True : enable log. False otherwise. (Default : true)
-     * @param {boolean}     options.opts.console                True : enable console stdout. False otherwise. (Default : true)
-     * @param {boolean}     options.opts.rotate                 True : enable log rotate file. False otherwise. (Default : true)
-     * @param {string}      options.opts.name                   Log Name. It's used for file name
-     * @param {string}      options.opts.level                  Level capture (Default : '*')
+     * @param {object}      options.ops                         Ops logger config
+     * @param {boolean}     options.ops.enable                  True : enable log. False otherwise. (Default : true)
+     * @param {boolean}     options.ops.console                 True : enable console stdout. False otherwise. (Default : true)
+     * @param {boolean}     options.ops.rotate                  True : enable log rotate file. False otherwise. (Default : true)
+     * @param {string}      options.ops.name                    Log Name. It's used for file name
+     * @param {string}      options.ops.level                   Level capture (Default : '*')
      * @param {object}      options.request                     Request logger config
      * @param {boolean}     options.request.enable              True : enable log. False otherwise. (Default : true)
      * @param {boolean}     options.request.console             True : enable console stdout. False otherwise. (Default : true)
@@ -75,7 +75,7 @@ const myPlugin = {
      * @param {function}    next                                Next Function
      */
     register: function (server, options, next) {
-        var logs = [ 'log', 'opts', 'request', 'response', 'error' ];
+        var logs = [ 'log', 'ops', 'request', 'response', 'error' ];
 
         options = _.extend({}, {
             logPath : path.join(os.tmpdir(), '/good-winston')

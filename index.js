@@ -16,15 +16,18 @@ const loggers = {
 
         if (options.console === true) {
             transports.push(new winston.transports.Console({
-                colorize : true
+                colorize                        : true,
+                handleExceptions                : options.handleExceptions,
+                humanReadableUnhandledException : options.humanReadableUnhandledException
             }));
         }
 
         if (options.rotate === true) {
             transports.push(new DailyRotateFile({
-                name        : options.name,
-                datePattern : '.yyyy-MM-ddTHH',
-                filename    : path.join(options.logPath, options.name + '.log')
+                name                : options.name,
+                datePattern         : '.yyyy-MM-ddTHH',
+                filename            : path.join(options.logPath, options.name + '.log'),
+                handleExceptions    : options.handleExceptions
             }));
         }
 
@@ -110,6 +113,14 @@ const myPlugin = {
                         opts[log] = options[log].level;
 
                         options[log].logPath = options.logPath;
+
+                        if (log == 'error') {
+                            options[log].handleExceptions = true;
+                            options[log].humanReadableUnhandledException = true;
+                        } else {
+                            delete options[log].handleExceptions;
+                            delete options[log].humanReadableUnhandledException
+                        }
 
                         reporters.push(new GoodWinston(opts, loggers.getLogger(options[log])));
                     }

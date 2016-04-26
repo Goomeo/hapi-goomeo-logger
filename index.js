@@ -91,7 +91,7 @@ const myPlugin = {
                 rotate  : true,
                 name    : log,
                 level   : '*'
-            });
+            }, options[log]);
         });
 
         async.series({

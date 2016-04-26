@@ -88,7 +88,7 @@ const myPlugin = {
             options[log] = _.extend({}, {
                 enable  : true,
                 console : true,
-                rotate  : true,
+                rotate  : false,
                 name    : log,
                 level   : '*'
             }, options[log]);
